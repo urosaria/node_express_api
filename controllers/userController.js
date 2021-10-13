@@ -7,14 +7,10 @@ module.exports = class User{
     static async apiGetAllUsers(req, res, next){
         try {
             const users = await UserService.getAllUsers();
-
-            console.log(users+"!!1");
             if(!users){
-                res.status(404).json("There are no article published yet!")
+                res.status(404).json("ERROR")
             }
-            //res.json({users: users});
             res.jsonp({ users: users });
-
         } catch (error) {
             res.status(500).json({error: error})
         }
@@ -35,16 +31,14 @@ module.exports = class User{
         try {
             let dept = req.params.dept || {};
             const users = await UserService.getUsersbyDept(dept);
-
-            console.log(users+"!!1");
             if(!users){
-                res.status(404).json("There are no article published yet!")
+                res.status(404).json("There are no employees in this department.")
             }
-            res.json(users);
+            res.jsonp({ users: users });
         } catch (error) {
             res.status(500).json({error: error})
         }
-
     }
+
 }
 

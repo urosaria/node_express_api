@@ -1,25 +1,30 @@
 class User {
-    constructor(name, dept, id) {
+    constructor(name, dept, email, picture, location, position) {
         this.name = name;
         this.dept = dept;
-        this.id = id;
+        this.position = position;
+        this.email = email;
+        this.picture = picture;
+        this.location = location;
+        this.desc = this.introduce();
     }
-    info () {
-        return this.name + this.dept;
-    }
-    getId (id){
-        return this.id;
-        //return this.findAll
+
+    //Sample data
+    introduce() {
+        let personal = this.name + 'is a ' + this.position + ' of ' + this.dept + ' department.';
+        let desc="";
+
+        if (this.dept === 'Sales') {
+            desc ='The primary responsibility is to sell an organisation’s services and products, perpetually finding unique ways to engage and increase audience size and clients.';
+        }else if (this.dept === 'IT') {
+            desc ='The primary responsibility is to provide the infrastructure for automation. It implements the governance for the use of network and operating systems, and it assists the operational units by providing them the functionality they need.';
+        }else if (this.dept === 'HR') {
+            desc ='The primary responsibility is to manage the employee life cycle (i.e., recruiting, hiring, onboarding, training, and firing employees) and administering employee benefits.';
+        }else if (this.dept === 'Marketing') {
+            desc ='The primary responsibility is to provide the necessary research to identify your target customers and other audiences.';
+        }
+        return personal + ' ' + desc;
     }
 }
-
-const user1 = new User ({name: 'Todd', dept: 'Sales'});
-const user2 = new User ({name: 'Todd2', dept: 'HR'});
-const user3 = new User ({name: 'Todd3', dept: 'IT'});
-
-let userlist = [];
-userlist.push(user1);
-userlist.push(user2);
-userlist.push(user3);
 
 module.exports = User;

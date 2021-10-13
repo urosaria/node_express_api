@@ -1,21 +1,13 @@
 const User = require("../models/user");
+const request = require('request');
 
 module.exports = class UserService{
-
     static async getAllUsers(){
         try {
-            // const allArticles = await  User.find();
-            const user1 = new User ({name: 'Todd', dept: 'Sales', id: 1});
-            const user2 = new User ({name: 'Todd2', dept: 'HR', id: 2});
-            const user3 = new User ({name: 'Todd3', dept: 'IT', id: 3});
-
             let userlist = [];
-            userlist.push(user1);
-            userlist.push(user2);
-            userlist.push(user3);
-
-            console.log(userlist + "service");
-
+            await this.initialUsers('all').then(function (result){
+                userlist=result;
+            })
             return userlist;
         } catch (error) {
             console.log(`Could not fetch articles ${error}`)
@@ -33,11 +25,56 @@ module.exports = class UserService{
 
     static async getUsersbyDept(dept){
         try {
-            const user1 = new User ({name: 'Todd', dept: 'Sales', id: 1});
-            return user1;
+            let userlist = [];
+            await this.initialUsers(dept).then(function (result){
+                userlist=result;
+            })
+            return userlist;
         } catch (error) {
             console.log(`Article not found. ${error}`)
         }
+    }
+
+    /* TEST sample data */
+    /* This is basically used randomuser Third party API. */
+    /* There are some error about latitude & longitude, it is different to real address. */
+    /* Department & position are defined randomly */
+    static async initialUsers(dept, result = 10){
+        let url = 'https://randomuser.me/api/?inc=name,location,email,phone,id,picture&results='+result;
+        return new Promise(resolve=>{
+            request(url, function(err, res, body){
+                const obj = JSON.parse(body);
+                const users = [];
+                //console.log('obj: ' + body);
+
+                const randomDept= ['Sales', 'Marketing', 'IT', 'HR'];
+                const randomPosition= ['Manager', 'Senior Manager', 'Junior Manager', 'Staff'];
+
+                //test markers=-34.9044,138.6067
+                for (const [index, item] of obj.results.entries()) {
+                    const name = item.name.first +' '+ item.name.last;
+
+                    // Dept random setting
+                    const rand_0_3 = Math.floor(Math.random() * 3);
+                    const deptUser = (dept === 'all'?randomDept[rand_0_3]:dept);
+                    const positionUser = randomPosition[rand_0_3];
+
+                    // This is for test.
+                    if(index==0){
+                        item.location.coordinates.latitude='-34.9044';
+                        item.location.coordinates.longitude='138.6067';
+                        item.location.city='Adelaide';
+                        item.location.state='South Australia';
+                        item.location.country='Australia';
+                    }
+
+
+                    const user = new User(name, deptUser, item.email, item.picture.large, item.location,positionUser);
+                    users.push(user);
+                }
+                resolve(users);
+            })
+        })
     }
 
 }
