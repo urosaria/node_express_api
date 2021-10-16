@@ -26,3 +26,69 @@ Then follow: <br />
 $ cd node_express_api <br />
 $ npm install <br />
 $ node bin/www <br />
+
+## APIs (Call random list of users)
+This API provides a random list of members from backend server. <br />
+
+http://{{host}}/
+
+
+### GET Users
+Default list:
+
+<pre>
+<code>
+http://{{host}}/
+</code>
+</pre>
+
+
+### GET UsersByDept
+Users by dept:
+
+<pre>
+<code>
+http://{{host}}/dept/:dept
+</code>
+</pre>
+
+Example: http://127.0.0.1:3000/dept/IT <br />
+':dept' could be IT, Marketing, HR, Sales. <br />
+
+
+### Result
+<pre>
+<code>
+{
+    "users": [
+        {
+            "name": "Zachary Ouellet",
+            "dept": "Sales",
+            "position": "Manager",
+            "email": "zachary.ouellet@example.com",
+            "picture": "https://randomuser.me/api/portraits/men/63.jpg",
+            "location": {
+                "street": {
+                    "number": 5836,
+                    "name": "Oak St"
+                },
+                "city": "Armstrong",
+                "state": "Newfoundland and Labrador",
+                "country": "Canada",
+                "postcode": "B9C 3S9",
+                "coordinates": {
+                    "latitude": "-60.9028",
+                    "longitude": "-88.6122"
+                },
+                "timezone": {
+                    "offset": "+5:45",
+                    "description": "Kathmandu"
+                }
+            },
+            "desc": "Zachary Ouelletis a Manager of Sales department. The primary responsibility is to sell an organisation’s services and products."
+        },
+      ...
+    ]
+}
+</code>
+</pre>
