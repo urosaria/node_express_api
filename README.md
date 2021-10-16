@@ -48,10 +48,13 @@ $ node bin/www <br />
 </code>
 </pre>
 
+You can check API in your browser: http://{{host}}:3000/
+
+
 ## APIs (Call random list of users)
 This API provides a random list of members from backend server. <br />
 
-http://{{host}}/
+http://{{host}}:3000/
 
 
 ### GET Users
