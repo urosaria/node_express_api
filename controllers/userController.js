@@ -17,16 +17,6 @@ module.exports = class User{
 
     }
 
-    static async apiGetUserById(req, res, next){
-        try {
-            let id = req.params.id || {};
-            const user = await UserService.getUserbyId(id);
-            res.json(user);
-        } catch (error) {
-            res.status(500).json({error: error})
-        }
-    }
-
     static async apiGetUsersByDept(req, res, next){
         try {
             let dept = req.params.dept || {};

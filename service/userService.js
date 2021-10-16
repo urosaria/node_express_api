@@ -14,15 +14,6 @@ module.exports = class UserService{
         }
     }
 
-    static async getUserbyId(userId){
-        try {
-            const user1 = new User ({name: 'Todd', dept: 'Sales', id: 1});
-            return user1;
-        } catch (error) {
-            console.log(`Article not found. ${error}`)
-        }
-    }
-
     static async getUsersbyDept(dept){
         try {
             let userlist = [];
@@ -58,16 +49,6 @@ module.exports = class UserService{
                     const rand_0_3 = Math.floor(Math.random() * 3);
                     const deptUser = (dept === 'all'?randomDept[rand_0_3]:dept);
                     const positionUser = randomPosition[rand_0_3];
-
-                    // This is for test.
-                    if(index==0){
-                        item.location.coordinates.latitude='-34.9044';
-                        item.location.coordinates.longitude='138.6067';
-                        item.location.city='Adelaide';
-                        item.location.state='South Australia';
-                        item.location.country='Australia';
-                    }
-
 
                     const user = new User(name, deptUser, item.email, item.picture.large, item.location,positionUser);
                     users.push(user);

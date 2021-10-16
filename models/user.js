@@ -15,13 +15,13 @@ class User {
         let desc="";
 
         if (this.dept === 'Sales') {
-            desc ='The primary responsibility is to sell an organisation’s services and products, perpetually finding unique ways to engage and increase audience size and clients.';
+            desc ='The primary responsibility is to sell an organisation’s services and products.';
         }else if (this.dept === 'IT') {
-            desc ='The primary responsibility is to provide the infrastructure for automation. It implements the governance for the use of network and operating systems, and it assists the operational units by providing them the functionality they need.';
+            desc ='The primary responsibility is to provide the infrastructure for automation. ';
         }else if (this.dept === 'HR') {
-            desc ='The primary responsibility is to manage the employee life cycle (i.e., recruiting, hiring, onboarding, training, and firing employees) and administering employee benefits.';
+            desc ='The primary responsibility is to manage the employee life cycle and administering employee benefits.';
         }else if (this.dept === 'Marketing') {
-            desc ='The primary responsibility is to provide the necessary research to identify your target customers and other audiences.';
+            desc ='The primary responsibility is to provide the necessary research.';
         }
         return personal + ' ' + desc;
     }
