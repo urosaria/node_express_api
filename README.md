@@ -8,24 +8,45 @@ Tested by Mac OS & Ubuntu-16.04.7.
 If you don't have node, please install it. 
 
 In Ubuntu: <br />
-$ sudo apt-get update <br />
-$ sudo apt-get install -y build-essential <br />
-$ sudo apt-get install -y nodejs <br />
+<pre>
+<code>
+$ sudo apt-get update
+$ sudo apt-get install -y build-essential 
+$ sudo apt-get install -y nodejs 
+</code>
+</pre>
 
 Then check version: <br />
+<pre>
+<code>
 $ node -v <br />
+</code>
+</pre>
+
 
 In order to clone the source from github, please install git.
 In Ubuntu: <br />
+<pre>
+<code>
 $ sudo apt install git
+</code>
+</pre>
 
 Then clone the code: <br />
+<pre>
+<code>
 $ git clone https://github.com/urosaria/node_express_api.git
+</code>
+</pre>
 
 Then follow: <br />
+<pre>
+<code>
 $ cd node_express_api <br />
 $ npm install <br />
 $ node bin/www <br />
+</code>
+</pre>
 
 ## APIs (Call random list of users)
 This API provides a random list of members from backend server. <br />
