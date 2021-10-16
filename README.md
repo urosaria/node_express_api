@@ -62,7 +62,7 @@ Default list:
 
 <pre>
 <code>
-http://{{host}}/
+http://{{host}}:3000/
 </code>
 </pre>
 
@@ -72,7 +72,7 @@ Users by dept:
 
 <pre>
 <code>
-http://{{host}}/dept/:dept
+http://{{host}}:3000/dept/:dept
 </code>
 </pre>
 
